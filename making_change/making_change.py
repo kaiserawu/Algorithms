@@ -3,8 +3,19 @@
 import sys
 
 def making_change(amount, denominations):
-  pass 
+  coinChoice = len(denominations)
 
+  def rec(amount, denominations, coinChoice):
+    if amount == 0:
+      return 1
+    if amount < 0:
+      return 0
+    if coinChoice == 0:
+      return 0
+    
+    return rec(amount - denominations[coinChoice - 1], denominations, coinChoice) + rec(amount, denominations, coinChoice - 1)
+
+  return rec(amount, denominations, coinChoice)
 
 if __name__ == "__main__":
   # Test our your implementation from the command line
